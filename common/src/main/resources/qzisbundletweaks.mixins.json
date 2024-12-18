@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.qzimyion.qzibundletweaks.mixin",
+  "refmap": "${mod_id}.refmap.json",
+  "compatibilityLevel": "JAVA_18",
+  "mixins": [
+    "BlockItemInvoker",
+    "BundleContentsUnstackingMixin",
+    "BundleDecrementFixMixin",
+    "BundleRandomBlockPlacementMixin"
+  ],
+  "client": [
+  ],
+  "server": [],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
+

@@ -1,0 +1,13 @@
+package com.qzimyion.qzibundletweaks.mixin;
+
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.level.block.state.BlockState;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.gen.Invoker;
+
+@Mixin(BlockItem.class)
+public interface BlockItemInvoker {
+    @Invoker("getPlaceSound")
+    SoundEvent invokeGetPlaceSound(BlockState state);
+}
