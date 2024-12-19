@@ -8,7 +8,9 @@
     "BlockItemInvoker",
     "BundleContentsUnstackingMixin",
     "BundleDecrementFixMixin",
-    "BundleRandomBlockPlacementMixin"
+    "BundleItemEntityMixin",
+    "BundleRandomBlockPlacementMixin",
+    "ItemEntityPickViaBundleMixin"
   ],
   "client": [
   ],
