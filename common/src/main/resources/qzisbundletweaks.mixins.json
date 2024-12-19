@@ -8,7 +8,6 @@
     "BlockItemInvoker",
     "BundleContentsUnstackingMixin",
     "BundleDecrementFixMixin",
-    "BundleItemEntityMixin",
     "BundleRandomBlockPlacementMixin",
     "ItemEntityPickViaBundleMixin"
   ],
