@@ -5,6 +5,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
@@ -16,7 +17,6 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.phys.BlockHitResult;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -53,6 +53,7 @@ public class BundleRandomBlockPlacementMixin extends Item {
         }
         InteractionResult result = null;
         assert player != null;
+        InteractionHand swingingArm = player.swingingArm;
         if (player.isShiftKeyDown()) {
             result = blockItem.useOn(placeContext);
             if (result.consumesAction()) {
@@ -60,6 +61,7 @@ public class BundleRandomBlockPlacementMixin extends Item {
                     removeItem(context.getPlayer(), bundle, selectedIndex);
                 }
                 BlockState placedBlockState = blockItem.getBlock().defaultBlockState();
+                player.swing(swingingArm);
                 SoundType soundType = placedBlockState.getSoundType();
                 context.getLevel().playSound(null, context.getClickedPos(),
                         soundType.getPlaceSound(), SoundSource.BLOCKS,
