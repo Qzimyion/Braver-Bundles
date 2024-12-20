@@ -1,3 +1,3 @@
 # Qzimyion's Bundle Tweaks
 
-QoL features for the Bundle.
+QoL improvement features for the Bundle.
