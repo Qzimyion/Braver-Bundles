@@ -10,6 +10,6 @@
     "BundleContentsUnstackingMixin",
     "BundleDecrementFixMixin",
     "BundleRandomBlockPlacementMixin",
-    "ItemEntityPickViaBundleMixin"
+    "BlockDropsPickupViaBundleMixin"
   ]
 }
