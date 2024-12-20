@@ -5,7 +5,6 @@
   "refmap": "${mod_id}.refmap.json",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-
   ],
   "client": [
     "MixinTitleScreen"
@@ -15,4 +14,4 @@
     "defaultRequire": 1
   }
 }
-  
+

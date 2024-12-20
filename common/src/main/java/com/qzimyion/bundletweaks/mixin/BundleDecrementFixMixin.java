@@ -12,13 +12,19 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 @Mixin(BlockItem.class)
 public class BundleDecrementFixMixin {
 
-    @Redirect(method = "place(Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/InteractionResult;", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;consume(ILnet/minecraft/world/entity/LivingEntity;)V"))
-    private void cancelBundleDecrement(ItemStack itemStack, int amount, LivingEntity entity) {
-        Item item = itemStack.getItem();
-        if (item instanceof BundleItem) {
-            itemStack.shrink(0);
-        } else {
-            itemStack.shrink(amount);
-        }
-    }
+	@Redirect(
+		method = "place(Lnet/minecraft/world/item/context/BlockPlaceContext;)Lnet/minecraft/world/InteractionResult;",
+		at = @At(
+			value = "INVOKE",
+			target = "Lnet/minecraft/world/item/ItemStack;consume(ILnet/minecraft/world/entity/LivingEntity;)V"
+		)
+	)
+	private void cancelBundleDecrement(ItemStack itemStack, int amount, LivingEntity entity) {
+		Item item = itemStack.getItem();
+		if (item instanceof BundleItem) {
+			itemStack.shrink(0);
+		} else {
+			itemStack.shrink(amount);
+		}
+	}
 }

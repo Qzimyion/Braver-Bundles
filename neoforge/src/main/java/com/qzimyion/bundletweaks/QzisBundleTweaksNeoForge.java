@@ -7,7 +7,7 @@ import net.neoforged.fml.common.Mod;
 @Mod(QzisBundleTweaksConstants.MOD_ID)
 public class QzisBundleTweaksNeoForge {
 
-    public QzisBundleTweaksNeoForge(IEventBus eventBus) {
-        CommonClass.init();
-    }
+	public QzisBundleTweaksNeoForge(IEventBus eventBus) {
+		QzisBundleTweaksCommon.init();
+	}
 }
