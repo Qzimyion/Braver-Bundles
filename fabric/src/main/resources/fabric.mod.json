@@ -15,22 +15,15 @@
     "icon": "qzisbundletweaks.png",
     "environment": "*",
     "entrypoints": {
-        "main": [
-            "com.qzimyion.qzibundletweaks.FabricQzisBundleTweaks"
-        ]
     },
     "mixins": [
         "qzisbundletweaks.mixins.json",
-        "qzisbundletweaks.fabric.mixins.json"
     ],
     "depends": {
         "fabricloader": ">=${fabric_loader_version}",
         "fabric-api": "*",
         "minecraft": "${minecraft_version}",
         "java": ">=${java_version}"
-    },
-    "suggests": {
-        "another-mod": "*"
     }
 }
   
