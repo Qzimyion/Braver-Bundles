@@ -1,21 +1,15 @@
 {
   "required": true,
-  "minVersion": "0.8",
-  "package": "com.qzimyion.qzibundletweaks.mixin",
-  "refmap": "${mod_id}.refmap.json",
-  "compatibilityLevel": "JAVA_18",
+  "minVersion": "0.8.5",
+  "package": "com.qzimyion.bundletweaks.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "injectors": {
+    "defaultRequire": 1
+  },
   "mixins": [
-    "BlockItemInvoker",
     "BundleContentsUnstackingMixin",
     "BundleDecrementFixMixin",
     "BundleRandomBlockPlacementMixin",
     "ItemEntityPickViaBundleMixin"
-  ],
-  "client": [
-  ],
-  "server": [],
-  "injectors": {
-    "defaultRequire": 1
-  }
+  ]
 }
-

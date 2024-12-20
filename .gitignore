@@ -1,4 +1,12 @@
+# gradle
+
+.gradle/
+build/
+out/
+classes/
+
 # eclipse
+
 bin
 *.launch
 .settings
@@ -7,18 +15,46 @@ bin
 .project
 
 # idea
-out
+
+.idea/
+*.iml
 *.ipr
 *.iws
-*.iml
-.idea/*
-!.idea/scopes
 
-# gradle
-build
-.gradle
+# vscode
 
-# other
-eclipse
-run
-runs
+.settings/
+.vscode/
+bin/
+.classpath
+.project
+
+# macos
+
+*.DS_Store
+
+# maven
+
+target/
+
+# fabric
+
+run/
+runclient/
+runserver/
+/remappedSrc/
+/src/main/generated/.cache
+/src/testmod/generated/.cache
+/config/
+
+# java
+
+hs_err_*.log
+replay_*.log
+*.hprof
+*.jfr
+/logs/
+
+# kotlin
+
+.kotlin/
