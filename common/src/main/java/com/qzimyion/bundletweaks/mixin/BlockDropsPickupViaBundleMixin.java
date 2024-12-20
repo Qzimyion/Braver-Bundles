@@ -13,13 +13,15 @@ import net.minecraft.world.item.BundleItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Block.class)
-public class ItemEntityPickViaBundleMixin {
+public class BlockDropsPickupViaBundleMixin {
 
 	@ModifyReturnValue(
 		method = "getDrops(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;",
@@ -29,6 +31,14 @@ public class ItemEntityPickViaBundleMixin {
 		List<ItemStack> original, BlockState state, ServerLevel level, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack tool
 	) {
 		if (entity instanceof Player player && !original.isEmpty()) {
+			BlockPos basePos;
+			// Handle doors
+			if (state.getValue(DoorBlock.HALF) == DoubleBlockHalf.UPPER) {
+				basePos = pos.below();
+				BlockState baseState = level.getBlockState(basePos);
+				List<ItemStack> baseDrops = Block.getDrops(baseState, level, basePos, null, player, tool);
+				original.addAll(baseDrops);
+			}
 			for (InteractionHand hand : InteractionHand.values()) {
 				ItemStack itemInHand = player.getItemInHand(hand);
 				if (itemInHand.getItem() instanceof BundleItem) {
@@ -37,16 +47,8 @@ public class ItemEntityPickViaBundleMixin {
 						BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
 						for (ItemStack itemStack : original) {
 							if (mutable.tryInsert(itemStack) != 0) {
-								level.playSound(
-									null,
-									player.getX(),
-									player.getY(),
-									player.getZ(),
-									SoundEvents.BUNDLE_INSERT,
-									player.getSoundSource(),
-									1F,
-									0.8F + level.getRandom().nextFloat() * 0.4F
-								);
+								level.playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.BUNDLE_INSERT,
+									player.getSoundSource(), 1F, 0.8F + level.getRandom().nextFloat() * 0.4F);
 							}
 						}
 						itemInHand.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
