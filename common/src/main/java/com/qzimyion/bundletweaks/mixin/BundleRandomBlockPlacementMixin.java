@@ -1,6 +1,8 @@
 package com.qzimyion.bundletweaks.mixin;
 
+import java.util.ArrayList;
 import java.util.List;
+import it.unimi.dsi.fastutil.ints.IntArrayList;
 import net.minecraft.Util;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundSource;
@@ -20,6 +22,7 @@ import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 
 @Mixin(BundleItem.class)
 public class BundleRandomBlockPlacementMixin extends Item {
@@ -40,26 +43,19 @@ public class BundleRandomBlockPlacementMixin extends Item {
 			BundleContents bundleContents = itemInHand.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
 			RandomSource random = player.getRandom();
 
-			// This piece here makes sure a BlockItem always get selected.
-			// Before, a non-BlockItem could be selected from the Bundle and make the task of placing Blocks frustrating.
-			List<ItemStack> blockItems = bundleContents.itemCopyStream()
-				.filter(itemStack -> itemStack.getItem() instanceof BlockItem && !player.getCooldowns().isOnCooldown(itemStack) && !itemStack.isEmpty())
-				.toList();
+			IntArrayList indexes = getBlockItemIndexes(bundleContents, player);
+			if (indexes.isEmpty()) return super.useOn(context);
 
-			if (blockItems.isEmpty()) return super.useOn(context);
+			int index = Util.getRandom(indexes, random);
+			ItemStack selectedItem = bundleContents.getItemUnsafe(index);
 
-			ItemStack selectedItem = Util.getRandom(blockItems, random);
 			if (selectedItem.getItem() instanceof BlockItem blockItem) {
 				BlockPlaceContext placeContext = new BlockPlaceContext(player, context.getHand(), selectedItem, context.getHitResult());
 				InteractionHand swingingArm = player.swingingArm;
 				// This doesn't preserve precise placement behavior of some blocks :(
 				InteractionResult result = blockItem.useOn(placeContext);
 				if (result.consumesAction()) {
-					if (!context.getPlayer().isCreative()) {
-						selectedItem.shrink(1);
-						BundleContents newBundleContents = new BundleContents(blockItems);
-						itemInHand.set(DataComponents.BUNDLE_CONTENTS, newBundleContents);
-					}
+					updateBundle(itemInHand, index);
 					BlockState placedBlockState = blockItem.getBlock().defaultBlockState();
 					player.swing(swingingArm);
 					SoundType soundType = placedBlockState.getSoundType();
@@ -70,13 +66,40 @@ public class BundleRandomBlockPlacementMixin extends Item {
 						(soundType.getVolume() + 1F) / 2F,
 						soundType.getPitch() * 0.8F
 					);
-					player.awardStat(Stats.ITEM_USED.get(this));
 					player.awardStat(Stats.ITEM_USED.get(blockItem));
 				}
 				return result;
 			}
 		}
 		return super.useOn(context);
+	}
+
+	@Unique
+	private static @NotNull IntArrayList getBlockItemIndexes(@NotNull BundleContents bundleContents, Player player) {
+		IntArrayList indexes = new IntArrayList();
+		for (int i = 0; i < bundleContents.size(); i++) {
+			ItemStack itemStack = bundleContents.getItemUnsafe(i);
+			if (!itemStack.isEmpty() && itemStack.getItem() instanceof BlockItem && !player.getCooldowns().isOnCooldown(itemStack)) {
+				indexes.add(i);
+			}
+		}
+		return indexes;
+	}
+
+	@Unique
+	private static void updateBundle(@NotNull ItemStack bundleItemStack, int index) {
+		BundleContents bundleContents = bundleItemStack.get(DataComponents.BUNDLE_CONTENTS);
+		if (bundleContents != null && !bundleContents.isEmpty() && index >= 0 && index < bundleContents.size()) {
+			List<ItemStack> stacks = new ArrayList<>(bundleContents.itemCopyStream().toList());
+			ItemStack stackAtIndex = stacks.get(index).copy();
+			if (stackAtIndex.isEmpty()) {
+				stacks.remove(index);
+			} else {
+				stacks.set(index, stackAtIndex);
+			}
+			BundleContents updatedContents = new BundleContents(stacks);
+			bundleItemStack.set(DataComponents.BUNDLE_CONTENTS, updatedContents);
+		}
 	}
 
 }
