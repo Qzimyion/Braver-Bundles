@@ -35,18 +35,21 @@ public class ItemEntityPickViaBundleMixin {
 					BundleContents bundleContents = itemInHand.get(DataComponents.BUNDLE_CONTENTS);
 					if (bundleContents != null) {
 						BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-						original.forEach(mutable::tryInsert);
+						for (ItemStack itemStack : original) {
+							if (mutable.tryInsert(itemStack) != 0) {
+								level.playSound(
+									null,
+									player.getX(),
+									player.getY(),
+									player.getZ(),
+									SoundEvents.BUNDLE_INSERT,
+									player.getSoundSource(),
+									1F,
+									0.8F + level.getRandom().nextFloat() * 0.4F
+								);
+							}
+						}
 						itemInHand.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
-						level.playSound(
-							null,
-							player.getX(),
-							player.getY(),
-							player.getZ(),
-							SoundEvents.BUNDLE_INSERT,
-							player.getSoundSource(),
-							1F,
-							0.8F + level.getRandom().nextFloat() * 0.4F
-						);
 					}
 				}
 			}
