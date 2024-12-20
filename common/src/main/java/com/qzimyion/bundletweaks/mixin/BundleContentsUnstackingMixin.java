@@ -11,6 +11,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(BundleContents.class)
 public class BundleContentsUnstackingMixin {
 
+	//todo: Add a config later for this
 	@Inject(method = "getWeight", at = @At("TAIL"), cancellable = true)
 	private static void getWeight(ItemStack itemStack, CallbackInfoReturnable<Fraction> info) {
 		if (itemStack.getMaxStackSize() == 1) {
