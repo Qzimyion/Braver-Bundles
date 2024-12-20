@@ -28,25 +28,26 @@ public class ItemEntityPickViaBundleMixin {
 	private static List<ItemStack> putDropsInBundle(
 		List<ItemStack> original, BlockState state, ServerLevel level, BlockPos pos, BlockEntity blockEntity, Entity entity, ItemStack tool
 	) {
-		if (entity instanceof Player player) {
+		if (entity instanceof Player player && !original.isEmpty()) {
 			for (InteractionHand hand : InteractionHand.values()) {
 				ItemStack itemInHand = player.getItemInHand(hand);
 				if (itemInHand.getItem() instanceof BundleItem) {
 					BundleContents bundleContents = itemInHand.get(DataComponents.BUNDLE_CONTENTS);
-					if (bundleContents == null) continue;
-					BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
-					original.forEach(mutable::tryInsert);
-					itemInHand.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
-					level.playSound(
-						null,
-						player.getX(),
-						player.getY(),
-						player.getZ(),
-						SoundEvents.BUNDLE_INSERT,
-						player.getSoundSource(),
-						1F,
-						0.8F + level.getRandom().nextFloat() * 0.4F
-					);
+					if (bundleContents != null) {
+						BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
+						original.forEach(mutable::tryInsert);
+						itemInHand.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
+						level.playSound(
+							null,
+							player.getX(),
+							player.getY(),
+							player.getZ(),
+							SoundEvents.BUNDLE_INSERT,
+							player.getSoundSource(),
+							1F,
+							0.8F + level.getRandom().nextFloat() * 0.4F
+						);
+					}
 				}
 			}
 		}

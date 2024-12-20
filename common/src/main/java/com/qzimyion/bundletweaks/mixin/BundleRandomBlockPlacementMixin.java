@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import it.unimi.dsi.fastutil.ints.IntArrayList;
 import net.minecraft.Util;
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.util.RandomSource;
@@ -18,6 +20,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
@@ -59,12 +62,23 @@ public class BundleRandomBlockPlacementMixin extends Item {
 					BlockState placedBlockState = blockItem.getBlock().defaultBlockState();
 					player.swing(swingingArm);
 					SoundType soundType = placedBlockState.getSoundType();
-					context.getLevel().playSound(
+					Level level = context.getLevel();
+					BlockPos clickedPos = context.getClickedPos();
+
+					level.playSound(
 						null,
-						context.getClickedPos(),
+						clickedPos,
 						soundType.getPlaceSound(), SoundSource.BLOCKS,
 						(soundType.getVolume() + 1F) / 2F,
 						soundType.getPitch() * 0.8F
+					);
+					level.playSound(
+						null,
+						clickedPos,
+						SoundEvents.BUNDLE_REMOVE_ONE,
+						player.getSoundSource(),
+						1F,
+						0.8F + level.getRandom().nextFloat() * 0.4F
 					);
 					player.awardStat(Stats.ITEM_USED.get(blockItem));
 				}
