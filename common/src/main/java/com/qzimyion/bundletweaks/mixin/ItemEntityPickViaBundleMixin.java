@@ -5,6 +5,7 @@ import java.util.List;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -20,9 +21,6 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(Block.class)
 public class ItemEntityPickViaBundleMixin {
 
-	// Just a little cleanup here.
-	// Don't forget to check where sounds are played from! I was able to just use bundleItem.playInsertSound instead or your re-written sound method.
-
 	@ModifyReturnValue(
 		method = "getDrops(Lnet/minecraft/world/level/block/state/BlockState;Lnet/minecraft/server/level/ServerLevel;Lnet/minecraft/core/BlockPos;Lnet/minecraft/world/level/block/entity/BlockEntity;Lnet/minecraft/world/entity/Entity;Lnet/minecraft/world/item/ItemStack;)Ljava/util/List;",
 		at = @At("TAIL")
@@ -33,13 +31,22 @@ public class ItemEntityPickViaBundleMixin {
 		if (entity instanceof Player player) {
 			for (InteractionHand hand : InteractionHand.values()) {
 				ItemStack itemInHand = player.getItemInHand(hand);
-				if (itemInHand.getItem() instanceof BundleItem bundleItem) {
+				if (itemInHand.getItem() instanceof BundleItem) {
 					BundleContents bundleContents = itemInHand.get(DataComponents.BUNDLE_CONTENTS);
 					if (bundleContents == null) continue;
 					BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
 					original.forEach(mutable::tryInsert);
 					itemInHand.set(DataComponents.BUNDLE_CONTENTS, mutable.toImmutable());
-					bundleItem.playInsertSound(entity);
+					level.playSound(
+						null,
+						player.getX(),
+						player.getY(),
+						player.getZ(),
+						SoundEvents.BUNDLE_INSERT,
+						player.getSoundSource(),
+						1F,
+						0.8F + level.getRandom().nextFloat() * 0.4F
+					);
 				}
 			}
 		}
