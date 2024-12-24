@@ -115,5 +115,4 @@ public class BundleRandomBlockPlacementMixin extends Item {
 			bundleItemStack.set(DataComponents.BUNDLE_CONTENTS, updatedContents);
 		}
 	}
-
 }
