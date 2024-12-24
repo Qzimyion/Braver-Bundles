@@ -7,9 +7,11 @@
     "defaultRequire": 1
   },
   "mixins": [
+    "BlockDropsPickupViaBundleMixin",
     "BundleContentsUnstackingMixin",
     "BundleDecrementFixMixin",
     "BundleRandomBlockPlacementMixin",
-    "BlockDropsPickupViaBundleMixin"
+    "ItemEntityScoopingViaBundleMixin",
+    "ai.AllayWhitelistGoalMixin"
   ]
 }
