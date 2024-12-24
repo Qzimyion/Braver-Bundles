@@ -3,6 +3,8 @@ package com.qzimyion.bundletweaks.mixin;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
@@ -39,14 +41,18 @@ public abstract class ItemEntityScoopingViaBundleMixin {
 	@Unique
 	private boolean qzimyions_Bundle_Tweaks$scoopUpItem(ItemStack itemStack, Player player) {
 		boolean success = false;
+		ItemStack stack = player.getItemInHand(InteractionHand.MAIN_HAND);
 		HitResult hitResult = ProjectileUtil.getHitResultOnViewVector(player, (entity -> true), player.blockInteractionRange());
 		if (hitResult instanceof EntityHitResult entityHitResult) {
 			if (entityHitResult.getEntity() instanceof ItemEntity itemEntity) {
-				success = true;
-				if (qzimyions_Bundle_Tweaks$storeInBundle(itemStack, itemEntity)) {
-					playInsertSound(player);
-				} else {
-					playInsertFailSound(player);
+				if (stack.is(ItemTags.BUNDLES)){
+					itemEntity.getBoundingBox().inflate(10);
+					success = true;
+					if (qzimyions_Bundle_Tweaks$storeInBundle(itemStack, itemEntity)) {
+						playInsertSound(player);
+					} else {
+						playInsertFailSound(player);
+					}
 				}
 			}
 		}
