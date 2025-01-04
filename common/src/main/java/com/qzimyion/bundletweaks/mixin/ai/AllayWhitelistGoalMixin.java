@@ -14,6 +14,7 @@ import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(Allay.class)
@@ -37,6 +38,7 @@ public class AllayWhitelistGoalMixin extends PathfinderMob {
 	}
 
 
+	@Unique
 	private boolean isItemInBundle(ItemStack bundle, ItemStack itemStack) {
 		BundleContents bundleContents = bundle.get(DataComponents.BUNDLE_CONTENTS);
 		if (bundleContents != null && !bundleContents.isEmpty()) {
