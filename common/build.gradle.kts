@@ -18,4 +18,5 @@ sourceSets.main.get().resources.srcDir("src/main/generated/resources")
 
 dependencies {
     modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
+    modApi("me.shedaniel.cloth:cloth-config:${project.properties["cloth_config_version"]}")
 }

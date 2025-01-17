@@ -33,15 +33,13 @@ val fabric_api_version: String by project
 val minecraft_version_range_fabric: String by project
 val neoforge_version: String by project
 val minecraft_version_range_neoforge: String by project
-
-val cloth_config_version: String by project
 val modmenu_version: String by project
 
 dependencies {
     neoForge("net.neoforged:neoforge:${neoforge_version}")
-
     "common"(project(":common", "namedElements")) { isTransitive = false }
     "shadowBundle"(project(":common", "transformProductionNeoForge"))
+    include(modApi("me.shedaniel.cloth:cloth-config-neoforge:${project.properties["cloth_config_version"]}")!!)
 }
 tasks {
     shadowJar {

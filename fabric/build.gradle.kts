@@ -35,8 +35,6 @@ val fabric_api_version: String by project
 val minecraft_version_range_fabric: String by project
 val neoforge_version: String by project
 val minecraft_version_range_neoforge: String by project
-
-val cloth_config_version: String by project
 val modmenu_version: String by project
 
 repositories {
@@ -48,14 +46,11 @@ repositories {
 dependencies {
     modImplementation("net.fabricmc:fabric-loader:${fabric_loader_version}")
     modApi("net.fabricmc.fabric-api:fabric-api:${fabric_api_version}+$minecraft_version")
-
-    modApi("me.shedaniel.cloth:cloth-config-fabric:${cloth_config_version}") {
-        exclude(group = "net.fabricmc.fabric-api")
-    }
     modApi("com.terraformersmc:modmenu:${modmenu_version}")
 
     "common"(project(":common", "namedElements")) { isTransitive = false }
     "shadowBundle"(project(":common", "transformProductionFabric"))
+    include(modApi("me.shedaniel.cloth:cloth-config-fabric:${project.properties["cloth_config_version"]}")!!)
 }
 
 tasks {

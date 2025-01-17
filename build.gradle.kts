@@ -31,8 +31,6 @@ val minecraft_version_range_fabric: String by project
 val neoforge_version: String by project
 val neoforge_loader_version_range: String by project
 val minecraft_version_range_neoforge: String by project
-
-val cloth_config_version: String by project
 val modmenu_version: String by project
 
 architectury.minecraft = minecraft_version
@@ -75,6 +73,7 @@ subprojects {
         maven("https://jitpack.io")
         maven("https://api.modrinth.com/maven")
         maven("https://maven.shedaniel.me/")
+        maven("https://api.modrinth.com/maven")
     }
 
     @Suppress("UnstableApiUsage")
@@ -89,10 +88,6 @@ subprojects {
         annotationProcessor("org.projectlombok:lombok:1.18.34")?.let { compileOnly(it) }
 
         implementation("org.ow2.asm:asm-tree:9.7")
-
-        implementation("me.shedaniel.cloth:cloth-config-forge:${cloth_config_version}") {
-            exclude(group = "net.fabricmc")
-        }
     }
 
     java {
