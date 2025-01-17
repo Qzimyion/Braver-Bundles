@@ -1,5 +1,6 @@
-package com.qzimyion.bundletweaks.common;
+package com.qzimyion.braverbundles.common;
 
+import com.qzimyion.braverbundles.config.CommonModConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
@@ -20,6 +21,9 @@ public class BundleDispenserBehavior implements DispenseItemBehavior {
 
 	@Override
 	public @NotNull ItemStack dispense(BlockSource blockSource, ItemStack itemStack) {
+		if (!CommonModConfig.DISPENSER_FUNC){
+			return null;
+		}
 		OptionalDispenseItemBehavior bundleDispenseBehavior = new OptionalDispenseItemBehavior() {};
 		BundleContents bundleContents = itemStack.get(DataComponents.BUNDLE_CONTENTS);
 		Direction direction = blockSource.state().getValue(DispenserBlock.FACING);
@@ -41,9 +45,7 @@ public class BundleDispenserBehavior implements DispenseItemBehavior {
 				}
 			}
 		}
-		// Else if there are items in front of the dispenser
-		//TODO: Add config option
-		else if (bundleContents != null) {
+		else if (bundleContents != null && CommonModConfig.DISPENSER_ITEM_ENTITY_SCOOPING_IF_BUNDLE_INSIDE) {
 			int space = bundleContents.weight().getDenominator() - bundleContents.weight().getNumerator();
 			BundleContents.Mutable mutable = new BundleContents.Mutable(bundleContents);
 			int inserted = 0;
