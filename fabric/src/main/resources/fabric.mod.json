@@ -16,6 +16,12 @@
   "icon": "assets/${mod_id}/icon.png",
   "environment": "*",
   "entrypoints": {
+    "main": [
+      "com.qzimyion.braverbundles.fabric.BraverBundlesFabric"
+    ],
+    "modmenu": [
+      "com.qzimyion.braverbundles.fabric.MMIntegration"
+    ]
   },
   "mixins": [
     "${mod_id}.mixins.json"

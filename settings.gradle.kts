@@ -21,4 +21,4 @@ include("common")
 include("fabric")
 include("neoforge")
 
-rootProject.name = "Qzimyion's Bundle Tweaks"
+rootProject.name = "Braver Bundles"
