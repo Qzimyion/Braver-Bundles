@@ -1,11 +1,15 @@
-package com.qzimyion.bundletweaks.common;
+package com.qzimyion.braverbundles.common;
 
+import com.qzimyion.braverbundles.config.CommonModConfig;
+import me.shedaniel.autoconfig.AutoConfig;
+import me.shedaniel.autoconfig.serializer.JanksonConfigSerializer;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.DispenserBlock;
 
-public class QzimyionsBundleTweaksCommon {
+public class BraverBundlesCommon {
 
 	public static void init(){
+		AutoConfig.register(CommonModConfig.class, JanksonConfigSerializer::new);
 		DispenserBlock.registerBehavior(Items.BUNDLE, new BundleDispenserBehavior());
 		DispenserBlock.registerBehavior(Items.WHITE_BUNDLE, new BundleDispenserBehavior());
 		DispenserBlock.registerBehavior(Items.ORANGE_BUNDLE, new BundleDispenserBehavior());
