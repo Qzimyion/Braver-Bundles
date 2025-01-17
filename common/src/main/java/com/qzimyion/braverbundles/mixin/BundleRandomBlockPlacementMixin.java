@@ -1,4 +1,4 @@
-package com.qzimyion.bundletweaks.mixin;
+package com.qzimyion.braverbundles.mixin;
 
 import java.util.ArrayList;
 import java.util.List;
