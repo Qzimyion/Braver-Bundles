@@ -3,6 +3,7 @@ package com.qzimyion.braverbundles.common;
 import com.qzimyion.braverbundles.config.CommonModConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Position;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.dispenser.BlockSource;
 import net.minecraft.core.dispenser.DefaultDispenseItemBehavior;
@@ -19,14 +20,25 @@ import java.util.Optional;
 
 public class BundleDispenserBehavior implements DispenseItemBehavior {
 
+	protected ItemStack execute(BlockSource blockSource, ItemStack item) {
+		Direction direction = blockSource.state().getValue(DispenserBlock.FACING);
+		Position position = DispenserBlock.getDispensePosition(blockSource);
+		ItemStack itemStack = item.split(1);
+		DefaultDispenseItemBehavior.spawnItem(blockSource.level(), itemStack, 6, direction, position);
+		return item;
+	}
+
 	@Override
 	public @NotNull ItemStack dispense(BlockSource blockSource, ItemStack itemStack) {
+		Direction direction = blockSource.state().getValue(DispenserBlock.FACING);
 		if (!CommonModConfig.DISPENSER_FUNC){
-			return null;
+			ItemStack itemStack2 = this.execute(blockSource, itemStack);
+			this.playSound(blockSource);
+			this.playAnimation(blockSource, blockSource.state().getValue(DispenserBlock.FACING));
+			return itemStack2;
 		}
 		OptionalDispenseItemBehavior bundleDispenseBehavior = new OptionalDispenseItemBehavior() {};
 		BundleContents bundleContents = itemStack.get(DataComponents.BUNDLE_CONTENTS);
-		Direction direction = blockSource.state().getValue(DispenserBlock.FACING);
 		BlockPos frontPos = blockSource.pos().relative(direction);
 		List<ItemEntity> itemEntityList = blockSource.level().getEntitiesOfClass(
 			ItemEntity.class,
@@ -39,7 +51,6 @@ public class BundleDispenserBehavior implements DispenseItemBehavior {
 				if (optional.isPresent()) {
 					DefaultDispenseItemBehavior.spawnItem(blockSource.level(), optional.get(), 6, direction, DispenserBlock.getDispensePosition(blockSource));
 					this.playSound(blockSource);
-					// play bundle sound
 					playAnimation(blockSource, direction);
 					return itemStack;
 				}
