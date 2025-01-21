@@ -46,7 +46,7 @@ public class BundleRandomBlockPlacementMixin extends Item {
 			BundleContents bundleContents = itemInHand.getOrDefault(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY);
 			RandomSource random = player.getRandom();
 
-			IntArrayList indexes = getBlockItemIndexes(bundleContents, player);
+			IntArrayList indexes = qzimyions_Bundle_Tweaks$getBlockItemIndexes(bundleContents, player);
 			if (indexes.isEmpty()) return super.useOn(context);
 
 			int index = Util.getRandom(indexes, random);
@@ -58,7 +58,7 @@ public class BundleRandomBlockPlacementMixin extends Item {
 				// This doesn't preserve precise placement behavior of some blocks :(
 				InteractionResult result = blockItem.useOn(placeContext);
 				if (result.consumesAction()) {
-					updateBundle(itemInHand, index);
+					qzimyions_Bundle_Tweaks$updateBundle(itemInHand, index);
 					BlockState placedBlockState = blockItem.getBlock().defaultBlockState();
 					player.swing(swingingArm);
 					SoundType soundType = placedBlockState.getSoundType();
@@ -89,7 +89,7 @@ public class BundleRandomBlockPlacementMixin extends Item {
 	}
 
 	@Unique
-	private static @NotNull IntArrayList getBlockItemIndexes(@NotNull BundleContents bundleContents, Player player) {
+	private static @NotNull IntArrayList qzimyions_Bundle_Tweaks$getBlockItemIndexes(@NotNull BundleContents bundleContents, Player player) {
 		IntArrayList indexes = new IntArrayList();
 		for (int i = 0; i < bundleContents.size(); i++) {
 			ItemStack itemStack = bundleContents.getItemUnsafe(i);
@@ -101,7 +101,7 @@ public class BundleRandomBlockPlacementMixin extends Item {
 	}
 
 	@Unique
-	private static void updateBundle(@NotNull ItemStack bundleItemStack, int index) {
+	private static void qzimyions_Bundle_Tweaks$updateBundle(@NotNull ItemStack bundleItemStack, int index) {
 		BundleContents bundleContents = bundleItemStack.get(DataComponents.BUNDLE_CONTENTS);
 		if (bundleContents != null && !bundleContents.isEmpty() && index >= 0 && index < bundleContents.size()) {
 			List<ItemStack> stacks = new ArrayList<>(bundleContents.itemCopyStream().toList());

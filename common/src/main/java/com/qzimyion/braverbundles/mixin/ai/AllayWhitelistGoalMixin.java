@@ -36,12 +36,12 @@ public class AllayWhitelistGoalMixin extends PathfinderMob {
 				return true;
 			}
 		}
-		return isItemInBundle(heldStack, itemStack);
+		return qzimyions_Bundle_Tweaks$isItemInBundle(heldStack, itemStack);
 	}
 
 
 	@Unique
-	private boolean isItemInBundle(ItemStack bundle, ItemStack itemStack) {
+	private boolean qzimyions_Bundle_Tweaks$isItemInBundle(ItemStack bundle, ItemStack itemStack) {
 		BundleContents bundleContents = bundle.get(DataComponents.BUNDLE_CONTENTS);
 		if (bundleContents != null && !bundleContents.isEmpty()) {
 			for (ItemStack bundledItem : bundleContents.items()) {
