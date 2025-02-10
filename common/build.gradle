@@ -1,0 +1,13 @@
+architectury {
+    common rootProject.enabled_platforms.split(',')
+}
+
+loom {
+    accessWidenerPath = file("src/main/resources/braverbundles.accesswidener")
+}
+
+dependencies {
+    modImplementation "net.fabricmc:fabric-loader:$rootProject.fabric_loader_version"
+    modImplementation "dev.architectury:architectury:$rootProject.architectury_api_version"
+    modImplementation include ("maven.modrinth:midnightlib:${project.midnightlib_version}-fabric")
+}

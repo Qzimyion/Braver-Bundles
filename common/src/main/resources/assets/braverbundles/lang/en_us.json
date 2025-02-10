@@ -1,7 +1,11 @@
 {
-  "text.autoconfig.braverbundles.title" : "Braver Bundles Config",
-  "text.autoconfig.braverbundles.option.UNSTACKING_FRACTIONS" : "Unstackables in bundles",
-  "text.autoconfig.braverbundles.option.ALLAY_WHITELIST" : "Allay item filtering",
-  "text.autoconfig.braverbundles.option.DISPENSER_FUNC" : "Bundle dispenser interactions",
-  "text.autoconfig.braverbundles.option.DISPENSER_ITEM_ENTITY_SCOOPING_IF_BUNDLE_INSIDE" : "Dispenser item pickup via bundles"
+  "braverbundles.midnightconfig.title" : "Mod Config",
+  "braverbundles.midnightconfig.UNSTACKING_FRACTIONS" : "Unstackable items in bundles amount",
+  "braverbundles.midnightconfig.ALLAY_WHITELIST" : "Allay item filtering",
+  "braverbundles.midnightconfig.DISPENSER_FUNC" : "Bundle dispenser interactions",
+  "braverbundles.midnightconfig.DISPENSER_ITEM_ENTITY_SCOOPING_IF_BUNDLE_INSIDE":"Dispenser item pickup via bundles",
+  "braverbundles.midnightconfig.UNSTACKING_FRACTIONS.tooltip" : "Allows you to store more unstackable items inside a bundle. \nDefault value: 1/4 or 0.25",
+  "braverbundles.midnightconfig.ALLAY_WHITELIST.tooltip" : "Allays holding bundles can collect any items found inside.",
+  "braverbundles.midnightconfig.DISPENSER_FUNC.tooltip" : "Dispensers with a bundle inside can drop it's contents outside.",
+  "braverbundles.midnightconfig.DISPENSER_ITEM_ENTITY_SCOOPING_IF_BUNDLE_INSIDE.tooltip":"If an item is in front of the dispenser with a bundle inside, the item is stored inside the bundle"
 }

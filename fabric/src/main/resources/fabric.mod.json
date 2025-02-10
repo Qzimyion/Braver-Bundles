@@ -5,16 +5,15 @@
   "name": "${mod_name}",
   "description": "${mod_description}",
   "authors": [
-    "${mod_author}"
+    "${mod_authors}"
   ],
   "contact": {
     "homepage": "https://modrinth.com/user/Qzimyion",
-    "sources": "https://github.com/Qzimyion/Qzimyions-Bundle-Tweaks",
-    "issues": "https://github.com/Qzimyion/Qzimyions-Bundle-Tweaks/issues"
+    "sources": "https://github.com/Qzimyion/Braver-Bundles",
+    "issues": "https://github.com/Qzimyion/Braver-Bundles/issues"
   },
   "license": "${mod_license}",
-  "icon": "assets/${mod_id}/icon.png",
-  "accessWidener" : "braverbundles.accesswidener",
+  "icon": "assets/braverbundles/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
@@ -25,28 +24,15 @@
     ]
   },
   "mixins": [
-    "${mod_id}.mixins.json"
+    "braverbundles.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=${fabric_loader_version}",
-    "fabric-api": "*",
-    "minecraft": "${minecraft_version_range_fabric}",
-    "java": ">=${java_version}"
+    "fabricloader": ">=0.16.10",
+    "minecraft": "${minecraft_version}",
+    "java": ">=21",
+    "fabric-api": "*"
   },
   "suggests": {
-    "cloth-config": "*"
-  },
-  "custom": {
-    "modmenu": {
-      "links": {
-        "X": "https://x.com/Qzimyion",
-        "Bluesky": "https://bsky.app/profile/qzimyion.bsky.social",
-        "modmenu.discord": "https://t.co/mpmPxWxzq1",
-        "modmenu.modrinth": "https://modrinth.com/user/Qzimyion",
-        "modmenu.youtube": "https://www.youtube.com/channel/UCSuyyyXWzsShu0Q41__b2Pw",
-        "GitHub": "https://github.com/Qzimyion",
-        "Tumblr": "https://qzimyion.tumblr.com/"
-      }
-    }
+    "midnightlib": ">=${midnightlib_version}"
   }
 }

@@ -2,7 +2,7 @@ package com.qzimyion.braverbundles.mixin.ai;
 
 import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
-import com.qzimyion.braverbundles.config.CommonModConfig;
+import com.qzimyion.braverbundles.CommonModConfig;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;

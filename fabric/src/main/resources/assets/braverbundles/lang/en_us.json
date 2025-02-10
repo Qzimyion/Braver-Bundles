@@ -1,7 +1,0 @@
-{
-  "text.autoconfig.braverbundles.title" : "Braver Bundles Config",
-  "text.autoconfig.braverbundles.option.UNSTACKING_FRACTIONS" : "Unstackables in bundles",
-  "text.autoconfig.braverbundles.option.ALLAY_WHITELIST" : "Allay item filtering",
-  "text.autoconfig.braverbundles.option.DISPENSER_FUNC" : "Bundle dispenser interactions",
-  "text.autoconfig.braverbundles.option.DISPENSER_ITEM_ENTITY_SCOOPING_IF_BUNDLE_INSIDE" : "Dispenser item pickup via bundles"
-}

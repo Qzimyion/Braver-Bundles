@@ -1,6 +1,6 @@
 package com.qzimyion.braverbundles.common;
 
-import com.qzimyion.braverbundles.config.CommonModConfig;
+import com.qzimyion.braverbundles.CommonModConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Position;
@@ -15,6 +15,7 @@ import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.level.block.DispenserBlock;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -51,7 +52,7 @@ public class BundleDispenserBehavior implements DispenseItemBehavior {
 				if (optional.isPresent()) {
 					DefaultDispenseItemBehavior.spawnItem(blockSource.level(), optional.get(), 6, direction, DispenserBlock.getDispensePosition(blockSource));
 					this.playSound(blockSource);
-					playAnimation(blockSource, direction);
+					this.playAnimation(blockSource, direction);
 					return itemStack;
 				}
 			}

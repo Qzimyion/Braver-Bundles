@@ -1,33 +1,38 @@
 modLoader = "javafml"
-loaderVersion = "${neoforge_loader_version_range}"
+loaderVersion = "[4,)"
+issueTrackerURL = ""
 license = "${mod_license}"
 
 [[mods]]
 modId = "${mod_id}"
 version = "${mod_version}"
 displayName = "${mod_name}"
-displayURL = "https://github.com/Qzimyion/Qzimyions-Bundle-Tweaks"
-logoFile = "META-INF/icon.png"
-credits = "${credits}"
-authors = "${mod_author}"
-description = "${mod_description}"
+authors = "${mod_credits}"
+description = '''
+${mod_description}
+'''
+logoFile = "resources/assets/braverbundles/icon.png"
 
-[[mixins]]
-config = "${mod_id}.mixins.json"
-
-#[[mixins]]
-#config = "${mod_id}.neoforge.mixins.json"
-
-[["dependencies.${mod_id}"]]
+[[dependencies.${mod_id}]]
 modId = "neoforge"
 type = "required"
-versionRange = "[${neoforge_version},)"
+versionRange = "[21.4,)"
 ordering = "NONE"
 side = "BOTH"
 
-[["dependencies.${mod_id}"]]
+[[dependencies.${mod_id}]]
 modId = "minecraft"
 type = "required"
-versionRange = "${minecraft_version_range_neoforge}"
+versionRange = "[1.21.4,)"
 ordering = "NONE"
 side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "midnightlib"
+type = "optional"
+versionRange = "[1.6.7,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[mixins]]
+config = "braverbundles.mixins.json"
