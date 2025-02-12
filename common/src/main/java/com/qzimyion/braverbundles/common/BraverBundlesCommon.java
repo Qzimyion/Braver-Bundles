@@ -1,6 +1,7 @@
-package com.qzimyion.braverbundles;
+package com.qzimyion.braverbundles.common;
 
-import com.qzimyion.braverbundles.common.BundleDispenserBehavior;
+import com.qzimyion.braverbundles.BraverBundlesConstants;
+import com.qzimyion.braverbundles.CommonModConfig;
 import eu.midnightdust.lib.config.MidnightConfig;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.DispenserBlock;
@@ -9,7 +10,6 @@ public final class BraverBundlesCommon {
 
     public static void init() {
         MidnightConfig.init(BraverBundlesConstants.MOD_ID, CommonModConfig.class);
-        //AutoConfig.register(CommonModConfig.class, JanksonConfigSerializer::new);
         DispenserBlock.registerBehavior(Items.BUNDLE, new BundleDispenserBehavior());
         DispenserBlock.registerBehavior(Items.WHITE_BUNDLE, new BundleDispenserBehavior());
         DispenserBlock.registerBehavior(Items.ORANGE_BUNDLE, new BundleDispenserBehavior());

@@ -1,6 +1,6 @@
 package com.qzimyion.braverbundles.fabric;
 
-import com.qzimyion.braverbundles.BraverBundlesCommon;
+import com.qzimyion.braverbundles.common.BraverBundlesCommon;
 import net.fabricmc.api.ModInitializer;
 
 public final class BraverBundlesFabric implements ModInitializer {
