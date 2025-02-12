@@ -19,6 +19,9 @@
     "main": [
       "com.qzimyion.braverbundles.fabric.BraverBundlesFabric"
     ],
+    "client": [
+      "com.qzimyion.braverbundles.fabric.BraverBundlesFabricClient"
+    ],
     "modmenu": [
       "com.qzimyion.braverbundles.fabric.MMIntegration"
     ]
@@ -30,7 +33,8 @@
     "fabricloader": ">=0.16.10",
     "minecraft": "${minecraft_version}",
     "java": ">=21",
-    "fabric-api": "*"
+    "fabric-api": "*",
+    "architectury": "15.0.1"
   },
   "suggests": {
     "midnightlib": ">=${midnightlib_version}"

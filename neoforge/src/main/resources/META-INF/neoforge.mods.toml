@@ -34,5 +34,12 @@ versionRange = "[1.6.7,)"
 ordering = "NONE"
 side = "BOTH"
 
+[[dependencies.${mod_id}]]
+modId = "architectury"
+type = "required"
+versionRange = "[15.0.1,)"
+ordering = "NONE"
+side = "CLIENT"
+
 [[mixins]]
 config = "braverbundles.mixins.json"
