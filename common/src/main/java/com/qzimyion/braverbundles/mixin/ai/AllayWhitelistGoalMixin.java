@@ -4,6 +4,7 @@ import com.llamalad7.mixinextras.injector.ModifyExpressionValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import com.qzimyion.braverbundles.CommonModConfig;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.PathfinderMob;
@@ -16,6 +17,8 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 
+import java.util.Objects;
+
 @Mixin(Allay.class)
 public class AllayWhitelistGoalMixin extends PathfinderMob {
 
@@ -25,7 +28,9 @@ public class AllayWhitelistGoalMixin extends PathfinderMob {
 
 	@ModifyExpressionValue(method = "wantsToPickUp", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/animal/allay/Allay;allayConsidersItemEqual(Lnet/minecraft/world/item/ItemStack;Lnet/minecraft/world/item/ItemStack;)Z"))
 	private boolean allayConsidersItemsEqual(boolean original, @Local(ordinal = 0, argsOnly = true) ItemStack itemStack){
-		if (!CommonModConfig.ALLAY_WHITELIST){
+		ServerLevel serverLevel = Objects.requireNonNull(this.getServer()).getLevel(this.level().dimension());
+        assert serverLevel != null;
+        if (!CommonModConfig.ALLAY_WHITELIST) {
 			return original;
 		}
 		ItemStack heldStack = getItemInHand(InteractionHand.MAIN_HAND);
