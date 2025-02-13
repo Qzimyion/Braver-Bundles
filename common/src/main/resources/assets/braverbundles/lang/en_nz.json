@@ -1,4 +1,5 @@
 {
+  "modmenu.descriptionTranslation.braverbundles": "Adds some QOL improvements and other new utility features to the Bundle.",
   "braverbundles.midnightconfig.title" : "Braver Bundles Config",
   "braverbundles.midnightconfig.UNSTACKING_FRACTIONS" : "Unstackable items in bundles amount",
   "braverbundles.midnightconfig.ALLAY_WHITELIST" : "Allay item filtering",
