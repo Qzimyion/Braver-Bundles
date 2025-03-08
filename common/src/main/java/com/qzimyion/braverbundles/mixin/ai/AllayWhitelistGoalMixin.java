@@ -50,7 +50,7 @@ public class AllayWhitelistGoalMixin extends PathfinderMob {
 		BundleContents bundleContents = bundle.get(DataComponents.BUNDLE_CONTENTS);
 		if (bundleContents != null && !bundleContents.isEmpty()) {
 			for (ItemStack bundledItem : bundleContents.items()) {
-				if (ItemStack.isSameItem(itemStack, bundledItem)) return true;
+				if (ItemStack.isSameItemSameComponents(itemStack, bundledItem)) return true;
 			}
 		}
 		return false;
