@@ -1,0 +1,12 @@
+{
+  "modmenu.descriptionTranslation.braverbundles": "Fügt einige QoL-Verbesserungen und andere nützliche Funktionen für das Bündel hinzu.",
+  "braverbundles.midnightconfig.title": "Braver Bundles Einstellungen",
+  "braverbundles.midnightconfig.UNSTACKING_FRACTIONS": "Anzahl nicht stapelbarer Gegenstände in Bündeln",
+  "braverbundles.midnightconfig.ALLAY_WHITELIST": "Hilfsgeist-Gegenstandsfilter",
+  "braverbundles.midnightconfig.DISPENSER_FUNC": "Interaktionen mit Spendern",
+  "braverbundles.midnightconfig.DISPENSER_ITEM_ENTITY_SCOOPING_IF_BUNDLE_INSIDE": "Spender sammelt Gegenstände mit Bündeln auf",
+  "braverbundles.midnightconfig.UNSTACKING_FRACTIONS.tooltip": "Erlaubt es, mehr nicht-stapelbare Gegenstände in einem Bündel zu lagern. \nStandardwert: 1/4 oder 0,25",
+  "braverbundles.midnightconfig.ALLAY_WHITELIST.tooltip": "Hilfsgeister, die ein Bündel halten, können alle darin enthaltenen Gegenstände sammeln.",
+  "braverbundles.midnightconfig.DISPENSER_FUNC.tooltip": "Spender mit einem Bündel im Inneren können dessen Inhalt nach draußen entleeren.",
+  "braverbundles.midnightconfig.DISPENSER_ITEM_ENTITY_SCOOPING_IF_BUNDLE_INSIDE.tooltip": "Wenn sich ein Gegenstand vor einem Spender mit Bündel befindet, wird dieser im Bündel gespeichert."
+}
