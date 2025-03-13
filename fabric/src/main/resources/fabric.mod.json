@@ -34,7 +34,7 @@
     "minecraft": "${minecraft_version}",
     "java": ">=21",
     "fabric-api": "*",
-    "architectury": "15.0.1"
+    "architectury": ">=15.0.3"
   },
   "suggests": {
     "midnightlib": ">=${midnightlib_version}"
