@@ -38,5 +38,18 @@
   },
   "suggests": {
     "midnightlib": ">=${midnightlib_version}"
+  },
+  "custom": {
+    "modmenu": {
+      "links": {
+        "Twitter": "https://x.com/Qzimyion",
+        "Bluesky": "https://bsky.app/profile/qzimyion.bsky.social",
+        "modmenu.discord": "https://t.co/mpmPxWxzq1",
+        "modmenu.modrinth": "https://modrinth.com/user/Qzimyion",
+        "modmenu.youtube": "https://www.youtube.com/channel/UCSuyyyXWzsShu0Q41__b2Pw",
+        "GitHub": "https://github.com/Qzimyion",
+        "Tumblr": "https://qzimyion.tumblr.com/"
+      }
+    }
   }
 }

@@ -39,7 +39,7 @@ dependencies {
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
-    modApi "com.terraformersmc:modmenu:13.0.1"
+    modApi "com.terraformersmc:modmenu:14.0.0-rc.2"
     modImplementation include ("maven.modrinth:midnightlib:${project.midnightlib_version}-fabric")
 }
 
