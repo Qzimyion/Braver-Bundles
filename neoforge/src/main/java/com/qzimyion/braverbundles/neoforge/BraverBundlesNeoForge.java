@@ -10,8 +10,9 @@ import net.neoforged.fml.common.Mod;
 public final class BraverBundlesNeoForge {
     public BraverBundlesNeoForge() {
         BraverBundlesCommon.init();
-        if (Platform.getEnv()== Dist.CLIENT){
+        if (Platform.getEnv()==Dist.CLIENT){
             BraverBundlesClient.init();
         }
+
     }
 }

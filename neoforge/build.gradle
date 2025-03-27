@@ -64,7 +64,7 @@ dependencies {
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
-    modImplementation include ("maven.modrinth:midnightlib:${project.midnightlib_version}-neoforge")
+    //modImplementation include ("maven.modrinth:midnightlib:${project.midnightlib_version}-neoforge")
 
 }
 
