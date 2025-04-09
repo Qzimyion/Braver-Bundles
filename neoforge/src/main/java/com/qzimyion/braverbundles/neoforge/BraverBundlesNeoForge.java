@@ -11,9 +11,8 @@ import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 
 @Mod(BraverBundlesConstants.MOD_ID)
 public final class BraverBundlesNeoForge {
-    public BraverBundlesNeoForge(ModContainer container) {
+    public BraverBundlesNeoForge() {
         BraverBundlesCommon.init();
-        container.registerExtensionPoint(IConfigScreenFactory.class, (modContainer, screen) -> MidnightConfig.getScreen(screen, BraverBundlesConstants.MOD_ID));
         if (Platform.getEnv()==Dist.CLIENT){
             BraverBundlesClient.init();
         }
