@@ -53,7 +53,7 @@ public class BundleRandomBlockPlacementMixin extends Item {
 			ItemStack selectedItem = bundleContents.getItemUnsafe(index);
 
 			if (selectedItem.getItem() instanceof BlockItem blockItem) {
-				BlockPlaceContext placeContext = new BlockPlaceContext(player, context.getHand(), selectedItem, context.getHitResult());
+				BlockPlaceContext placeContext = new BlockPlaceContext(player, context.getHand(), selectedItem, ((GetHitResultInvoker) context).invokeGetHitResult());
 				InteractionHand swingingArm = player.swingingArm;
 				// This doesn't preserve precise placement behavior of some blocks :(
 				InteractionResult result = blockItem.useOn(placeContext);
