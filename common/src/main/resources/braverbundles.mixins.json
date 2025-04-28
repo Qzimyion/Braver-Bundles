@@ -8,6 +8,7 @@
     "BundleContentsUnstackingMixin",
     "BundleDecrementFixMixin",
     "BundleRandomBlockPlacementMixin",
+    "GetHitResultInvoker",
     "ItemEntityScoopingViaBundleMixin",
     "ai.AllayWhitelistGoalMixin"
   ],

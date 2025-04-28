@@ -1,6 +1,5 @@
 accessWidener v2 named
 
 accessible field net/minecraft/world/item/component/BundleContents$Mutable items Ljava/util/List;
-accessible method net/minecraft/world/item/context/UseOnContext getHitResult ()Lnet/minecraft/world/phys/BlockHitResult;
 accessible method net/minecraft/world/item/BundleItem playInsertSound (Lnet/minecraft/world/entity/Entity;)V
 accessible method net/minecraft/world/item/component/BundleContents getWeight (Lnet/minecraft/world/item/ItemStack;)Lorg/apache/commons/lang3/math/Fraction;
